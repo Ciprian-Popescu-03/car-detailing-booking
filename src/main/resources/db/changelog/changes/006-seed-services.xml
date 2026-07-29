@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="006-seed-services" author="ciprian">
+        <insert tableName="services">
+            <column name="name" value="Exterior Wash"/>
+            <column name="description" value="Hand wash, wheel clean, tire shine, exterior dry."/>
+            <column name="duration_minutes" valueNumeric="30"/>
+            <column name="price" valueNumeric="80.00"/>
+            <column name="category" value="EXTERIOR"/>
+        </insert>
+        <insert tableName="services">
+            <column name="name" value="Interior Detail"/>
+            <column name="description" value="Vacuum, upholstery clean, dashboard and console detail."/>
+            <column name="duration_minutes" valueNumeric="60"/>
+            <column name="price" valueNumeric="150.00"/>
+            <column name="category" value="INTERIOR"/>
+        </insert>
+        <insert tableName="services">
+            <column name="name" value="Full Detail"/>
+            <column name="description" value="Complete exterior wash and interior detail combined."/>
+            <column name="duration_minutes" valueNumeric="120"/>
+            <column name="price" valueNumeric="250.00"/>
+            <column name="category" value="PACKAGE"/>
+        </insert>
+        <insert tableName="services">
+            <column name="name" value="Paint Correction"/>
+            <column name="description" value="Machine polish to remove swirl marks and light scratches."/>
+            <column name="duration_minutes" valueNumeric="180"/>
+            <column name="price" valueNumeric="450.00"/>
+            <column name="category" value="PREMIUM"/>
+        </insert>
+        <insert tableName="services">
+            <column name="name" value="Ceramic Coating"/>
+            <column name="description" value="Long-term paint protection with a durable ceramic layer."/>
+            <column name="duration_minutes" valueNumeric="240"/>
+            <column name="price" valueNumeric="800.00"/>
+            <column name="category" value="PREMIUM"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="004-create-bookings" author="ciprian">
+        <createTable tableName="bookings">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_bookings_service" references="services(id)"/>
+            </column>
+            <column name="customer_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_phone" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_email" type="VARCHAR(150)"/>
+            <column name="vehicle_make" type="VARCHAR(50)"/>
+            <column name="vehicle_model" type="VARCHAR(50)"/>
+            <!--
+              start_time/end_time are stored directly on the booking (rather than derived on the fly from
+              service duration) so the conflict-check query and index below don't need to join services.
+              end_time is set from service.duration_minutes at creation time and is immutable after that.
+            -->
+            <column name="start_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_time" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)" defaultValue="PENDING">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="TEXT"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <sql>
+            ALTER TABLE bookings ADD CONSTRAINT chk_bookings_time_range CHECK (end_time > start_time);
+            ALTER TABLE bookings ADD CONSTRAINT chk_bookings_status CHECK (status IN ('PENDING', 'CONFIRMED', 'CANCELLED', 'COMPLETED', 'NO_SHOW'));
+        </sql>
+
+        <!--
+          Partial index: the shop has a single bay (capacity = 1 for this MVP), so a new booking is only
+          rejected if its [start_time, end_time) overlaps an existing PENDING/CONFIRMED booking. Cancelled/
+          completed/no-show bookings don't block new slots, so they're excluded from the index and from the
+          conflict-check query.
+        -->
+        <sql>
+            CREATE INDEX idx_bookings_active_time_range ON bookings (start_time, end_time)
+                WHERE status IN ('PENDING', 'CONFIRMED');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

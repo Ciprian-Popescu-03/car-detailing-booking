@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- day_of_week uses ISO-8601 values (1=Monday .. 7=Sunday), matching java.time.DayOfWeek.getValue() -->
+    <changeSet id="002-create-business-hours" author="ciprian">
+        <createTable tableName="business_hours">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="day_of_week" type="INT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="open_time" type="TIME"/>
+            <column name="close_time" type="TIME"/>
+            <column name="closed" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <sql>
+            ALTER TABLE business_hours ADD CONSTRAINT chk_business_hours_day_range CHECK (day_of_week BETWEEN 1 AND 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="002b-seed-business-hours" author="ciprian">
+        <!-- Default: Mon-Sat 09:00-18:00, closed Sunday. Adjust to the real shop's hours later. -->
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="1"/>
+            <column name="open_time" value="09:00:00"/>
+            <column name="close_time" value="18:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="2"/>
+            <column name="open_time" value="09:00:00"/>
+            <column name="close_time" value="18:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="3"/>
+            <column name="open_time" value="09:00:00"/>
+            <column name="close_time" value="18:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="4"/>
+            <column name="open_time" value="09:00:00"/>
+            <column name="close_time" value="18:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="5"/>
+            <column name="open_time" value="09:00:00"/>
+            <column name="close_time" value="18:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="6"/>
+            <column name="open_time" value="10:00:00"/>
+            <column name="close_time" value="16:00:00"/>
+            <column name="closed" valueBoolean="false"/>
+        </insert>
+        <insert tableName="business_hours">
+            <column name="day_of_week" valueNumeric="7"/>
+            <column name="open_time" value="00:00:00"/>
+            <column name="close_time" value="00:00:00"/>
+            <column name="closed" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

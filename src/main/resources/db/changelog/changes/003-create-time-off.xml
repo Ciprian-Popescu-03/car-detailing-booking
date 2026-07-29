@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Admin-blocked ranges: holidays, personal time off, anything outside a normal booking cancellation -->
+    <changeSet id="003-create-time-off" author="ciprian">
+        <createTable tableName="time_off">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="start_datetime" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_datetime" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason" type="VARCHAR(255)"/>
+        </createTable>
+
+        <sql>
+            ALTER TABLE time_off ADD CONSTRAINT chk_time_off_range CHECK (end_datetime > start_datetime);
+        </sql>
+
+        <createIndex indexName="idx_time_off_range" tableName="time_off">
+            <column name="start_datetime"/>
+            <column name="end_datetime"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
