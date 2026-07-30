@@ -5,6 +5,7 @@ import DateStrip from "../components/DateStrip";
 import SlotGrid from "../components/SlotGrid";
 import BookingForm from "../components/BookingForm";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 function todayIso() {
   const d = new Date();
@@ -72,7 +73,7 @@ export default function BookingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950">
+    <div className="min-h-screen bg-black">
       <Header />
 
       <main className="max-w-3xl mx-auto px-4 pb-24">
@@ -81,7 +82,7 @@ export default function BookingPage() {
           <h1 className="mt-3 text-3xl sm:text-5xl font-bold text-white tracking-tight">
             Your car, detailed <span className="text-red-500">right</span>.
           </h1>
-          <p className="mt-4 text-neutral-400 max-w-lg leading-relaxed">
+          <p className="mt-4 text-zinc-400 max-w-lg leading-relaxed">
             Hand wash, interior detailing, paint correction and ceramic coating — pick a service and
             a time that works for you, no phone calls required.
           </p>
@@ -126,55 +127,31 @@ export default function BookingPage() {
   );
 }
 
-function Header() {
-  return (
-    <header className="sticky top-0 z-10 border-b border-neutral-900 bg-neutral-950/80 backdrop-blur">
-      <div className="max-w-3xl mx-auto px-4 py-5 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-red-600 flex items-center justify-center font-bold text-white">O</div>
-          <span className="text-white font-semibold tracking-wide">ONYX DETAILING</span>
-        </a>
-        <nav className="flex items-center gap-5">
-          <a href="#services" className="hidden sm:inline text-xs text-neutral-500 hover:text-neutral-300 transition-colors">
-            Services
-          </a>
-          <a href="#contact" className="hidden sm:inline text-xs text-neutral-500 hover:text-neutral-300 transition-colors">
-            Contact
-          </a>
-          <a href="/admin" className="text-xs text-neutral-500 hover:text-neutral-300 transition-colors">
-            Staff login
-          </a>
-        </nav>
-      </div>
-    </header>
-  );
-}
-
 function ConfirmationScreen({ booking }) {
   const dt = new Date(booking.startTime);
   return (
-    <div className="min-h-screen bg-neutral-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-black flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
         <div className="w-14 h-14 mx-auto rounded-full bg-red-600/15 border border-red-600/40 flex items-center justify-center text-red-500 text-2xl">
           ✓
         </div>
         <h1 className="mt-6 text-2xl font-bold text-white">You're booked in</h1>
-        <p className="mt-2 text-neutral-400">
+        <p className="mt-2 text-zinc-400">
           {booking.service.name} on{" "}
           {dt.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" })} at{" "}
           {dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}
         </p>
-        <div className="mt-6 rounded-xl border border-neutral-800 bg-neutral-900/50 p-5 text-left text-sm text-neutral-300 space-y-1">
-          <p><span className="text-neutral-500">Name:</span> {booking.customerName}</p>
-          <p><span className="text-neutral-500">Phone:</span> {booking.customerPhone}</p>
+        <div className="mt-6 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 text-left text-sm text-zinc-300 space-y-1">
+          <p><span className="text-zinc-500">Name:</span> {booking.customerName}</p>
+          <p><span className="text-zinc-500">Phone:</span> {booking.customerPhone}</p>
           {booking.vehicleMake && (
-            <p><span className="text-neutral-500">Vehicle:</span> {booking.vehicleMake} {booking.vehicleModel}</p>
+            <p><span className="text-zinc-500">Vehicle:</span> {booking.vehicleMake} {booking.vehicleModel}</p>
           )}
-          <p><span className="text-neutral-500">Price:</span> {Number(booking.service.price).toFixed(0)} RON</p>
+          <p><span className="text-zinc-500">Price:</span> {Number(booking.service.price).toFixed(0)} RON</p>
         </div>
         <a
           href="/"
-          className="mt-8 inline-block rounded-lg border border-neutral-700 px-5 py-2 text-sm text-neutral-300 hover:border-neutral-500"
+          className="mt-8 inline-block rounded-lg border border-zinc-700 px-5 py-2 text-sm text-zinc-300 hover:border-zinc-500"
         >
           Book another slot
         </a>

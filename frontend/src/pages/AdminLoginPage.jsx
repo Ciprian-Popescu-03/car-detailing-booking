@@ -25,10 +25,10 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4">
       <a
         href="/"
-        className="absolute top-6 left-4 sm:left-6 inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition-colors"
+        className="absolute top-6 left-4 sm:left-6 inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
       >
         <span aria-hidden="true">←</span> Back to site
       </a>
@@ -45,7 +45,7 @@ export default function AdminLoginPage() {
           <input
             required
             placeholder="Username"
-            className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm text-white placeholder-neutral-600 outline-none focus:border-red-500"
+            className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-600 outline-none focus:border-red-500"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
             required
             type="password"
             placeholder="Password"
-            className="w-full rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 text-sm text-white placeholder-neutral-600 outline-none focus:border-red-500"
+            className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-white placeholder-zinc-600 outline-none focus:border-red-500"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

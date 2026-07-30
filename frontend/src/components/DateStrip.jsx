@@ -26,7 +26,7 @@ export default function DateStrip({ selectedDate, onSelect, daysAhead = 14 }) {
             className={`flex-shrink-0 flex flex-col items-center justify-center w-16 h-18 rounded-lg border px-2 py-2 transition-colors ${
               isSelected
                 ? "border-red-500 bg-red-500/10 text-white"
-                : "border-neutral-800 text-neutral-400 hover:border-neutral-600 hover:text-neutral-200"
+                : "border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
             }`}
           >
             <span className="text-[11px] uppercase tracking-wide">{WEEKDAY[d.getDay()]}</span>

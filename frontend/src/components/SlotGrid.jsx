@@ -5,12 +5,12 @@ function formatTime(isoDateTime) {
 
 export default function SlotGrid({ slots, selectedSlot, onSelect, loading }) {
   if (loading) {
-    return <p className="text-neutral-500 text-sm">Loading available times...</p>;
+    return <p className="text-zinc-500 text-sm">Loading available times...</p>;
   }
 
   if (slots.length === 0) {
     return (
-      <p className="text-neutral-500 text-sm">
+      <p className="text-zinc-500 text-sm">
         No open slots this day - try another date.
       </p>
     );
@@ -27,7 +27,7 @@ export default function SlotGrid({ slots, selectedSlot, onSelect, loading }) {
             className={`rounded-lg border py-2 text-sm font-medium transition-colors ${
               isSelected
                 ? "border-red-500 bg-red-500 text-white"
-                : "border-neutral-800 text-neutral-300 hover:border-neutral-600"
+                : "border-zinc-800 text-zinc-300 hover:border-zinc-600"
             }`}
           >
             {formatTime(slot.startTime)}
