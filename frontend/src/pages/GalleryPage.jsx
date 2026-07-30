@@ -5,31 +5,31 @@ const SHOWCASE = [
   {
     title: "Exterior Wash",
     tag: "Before → After",
-    gradient: "from-sky-500/25 via-zinc-900 to-zinc-900",
+    gradient: "from-red-500/20 via-zinc-900 to-black",
     note: "Two-bucket hand wash, decontamination, tire shine.",
   },
   {
     title: "Interior Detail",
     tag: "Before → After",
-    gradient: "from-amber-500/20 via-zinc-900 to-zinc-900",
+    gradient: "from-red-800/30 via-zinc-900 to-black",
     note: "Deep vacuum, upholstery clean, dash & console detail.",
   },
   {
     title: "Full Detail",
     tag: "Before → After",
-    gradient: "from-red-600/25 via-zinc-900 to-zinc-900",
+    gradient: "from-red-600/35 via-zinc-900 to-black",
     note: "The complete package — exterior and interior in one visit.",
   },
   {
     title: "Paint Correction",
     tag: "Before → After",
-    gradient: "from-fuchsia-500/20 via-zinc-900 to-zinc-900",
+    gradient: "from-red-900/40 via-zinc-900 to-black",
     note: "Machine polish removes swirl marks and light scratches.",
   },
   {
     title: "Ceramic Coating",
     tag: "Before → After",
-    gradient: "from-cyan-500/25 via-zinc-900 to-zinc-900",
+    gradient: "from-red-400/15 via-zinc-900 to-black",
     note: "Long-term paint protection with a durable glossy layer.",
   },
 ];
