@@ -1,11 +1,11 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
     name: car-detailing-booking
   datasource:
-    url: jdbc:postgresql://localhost:5432/car_detailing
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/car_detailing}
     username: ${DB_USERNAME:car_detailing_user}
     password: ${DB_PASSWORD:changeme}
   jpa:
@@ -22,3 +22,5 @@ app:
   jwt:
     secret: ${JWT_SECRET:dev-only-secret-change-me-before-deploying-1234567890}
     expiration-minutes: 480
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
