@@ -3,7 +3,7 @@
 A full-stack appointment booking system for a single-bay car detailing shop. Customers choose a service, see the real free slots for any day and book in seconds. The shop owner manages bookings, services and time off from a protected admin dashboard.
 
 **Stack:** Java 21 · Spring Boot 3 · Spring Security + JWT · PostgreSQL · Liquibase · React 19 · Vite · Tailwind CSS 4 · Docker
-**Deployment:** backend on Railway (Docker), frontend on Vercel
+**Deployment:** Docker-based; previously hosted with the backend on Railway and the frontend on Vercel (not currently live)
 
 ---
 
@@ -138,5 +138,7 @@ docker run -p 8080:8080 \
 
 ## Deployment
 
-- **Backend:** built with the multi-stage `Dockerfile` (Maven build stage, then a slim JRE 21 runtime) and deployed on **Railway**, configured entirely through environment variables.
-- **Frontend:** deployed on **Vercel**. `frontend/vercel.json` proxies `/api/*` to the Railway backend and rewrites every other route to `index.html`, so client-side routes like `/admin` work after a page refresh.
+The app was hosted on Railway and Vercel and is currently offline. The setup below still applies to any Docker host.
+
+- **Backend:** built with the multi-stage `Dockerfile` (Maven build stage, then a slim JRE 21 runtime) and configured entirely through environment variables. Previously ran on **Railway**.
+- **Frontend:** previously ran on **Vercel**. `frontend/vercel.json` proxies `/api/*` to the Railway backend and rewrites every other route to `index.html`, so client-side routes like `/admin` work after a page refresh.
